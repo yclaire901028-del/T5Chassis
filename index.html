@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>T5 Electric Light Truck Chassis - Shentou Mobility</title>
+<style>
+    /* 哑光黑主题变量 (Matte Black Theme - EV Chassis Edition) */
+    :root {
+        --bg-matte-dark: #050505;
+        --bg-matte-light: #151515;
+        --panel-matte: rgba(25, 25, 25, 0.7);
+        --border-matte: rgba(255, 255, 255, 0.08);
+        --text-white: rgba(250, 250, 250, 1);
+        --text-muted: rgba(160, 160, 165, 1);
+        --accent-blue: #3b82f6; /* 科技电驱蓝 */
+        --accent-cyan: #06b6d4;
+        --accent-glow: rgba(59, 130, 246, 0.15);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    
+    body {
+        background: linear-gradient(135deg, var(--bg-matte-light) 0%, var(--bg-matte-dark) 100%);
+        color: var(--text-white);
+        line-height: 1.6;
+        min-height: 100vh;
+        overflow-x: hidden;
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+    
+    /* 隐藏系统引用的 cite 标记，确保页面纯净美观 */
+    .cite-tag { display: none; }
+
+    /* 玻璃拟态卡片公共样式 */
+    .glass-panel {
+        background: var(--panel-matte);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid var(--border-matte);
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    }
+
+    /* 首屏 Hero Section (左右图文展台布局) */
+    .hero {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 85vh;
+        padding: 40px 5%;
+        background: radial-gradient(circle at right center, var(--accent-glow), transparent 50%), var(--bg-matte-dark);
+        border-bottom: 1px solid var(--border-matte);
+    }
+    .hero-content {
+        flex: 1;
+        max-width: 600px;
+        position: relative;
+        z-index: 2;
+    }
+    .hero-content h2 { font-size: 1.3rem; color: var(--accent-cyan); margin-bottom: 15px; letter-spacing: 2px; text-transform: uppercase; }
+    .hero-content h1 { font-size: 3.6rem; margin-bottom: 25px; color: var(--text-white); line-height: 1.15; }
+    .hero-content p { font-size: 1.25rem; color: #cbd5e1; border-left: 4px solid var(--accent-blue); padding-left: 20px; margin-bottom: 30px; }
+    
+    .hero-image {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-left: 40px;
+    }
+    .img-showcase {
+        width: 100%;
+        max-width: 600px;
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 16px;
+        border: 1px solid rgba(59, 130, 246, 0.3);
+        box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 40px rgba(6, 182, 212, 0.15);
+        position: relative;
+        overflow: hidden;
+    }
+    .img-showcase img {
+        width: 100%;
+        display: block;
+        transition: transform 0.5s ease;
+    }
+    .img-showcase:hover img { transform: scale(1.03); }
+
+    /* Core Performance (数据矩阵) */
+    .section-title { text-align: center; font-size: 2.2rem; margin: 80px 0 40px; color: var(--text-white); }
+    
+    .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+        margin-bottom: 80px;
+    }
+    .kpi-card {
+        padding: 35px 25px;
+        text-align: center;
+        transition: transform 0.3s ease;
+        border-top: 3px solid transparent;
+    }
+    .kpi-card:hover { transform: translateY(-5px); border-top-color: var(--accent-blue); }
+    .kpi-number { font-size: 2.3rem; font-weight: bold; color: var(--text-white); margin-bottom: 10px; line-height: 1.2; }
+    .kpi-number span { font-size: 1.1rem; color: var(--accent-cyan); font-weight: normal; }
+    .kpi-desc { font-size: 0.95rem; color: var(--text-muted); line-height: 1.4; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    /* Product Highlights (三列平铺) */
+    .highlights-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        margin-bottom: 80px;
+    }
+    .highlight-card {
+        background: linear-gradient(180deg, rgba(30,30,35,0.8) 0%, rgba(15,15,18,0.9) 100%);
+        padding: 40px 30px;
+        border-radius: 12px;
+        border: 1px solid var(--border-matte);
+        position: relative;
+        overflow: hidden;
+    }
+    .highlight-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 4px;
+        background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+    }
+    .highlight-icon { font-size: 2.2rem; margin-bottom: 20px; color: var(--accent-cyan); }
+    .highlight-card h3 { font-size: 1.35rem; color: var(--text-white); margin-bottom: 15px; line-height: 1.3; }
+    .highlight-card p { color: var(--text-muted); font-size: 1.05rem; }
+
+    /* Technical Specifications Table (暗黑极简参数表) */
+    .specs-wrapper {
+        background: var(--panel-matte);
+        border: 1px solid var(--border-matte);
+        border-radius: 12px;
+        padding: 40px;
+        backdrop-filter: blur(12px);
+        margin-bottom: 80px;
+        overflow-x: auto;
+    }
+    .specs-wrapper h3 {
+        color: var(--accent-cyan);
+        margin-bottom: 30px;
+        font-size: 1.6rem;
+        text-align: center;
+    }
+    .spec-table { width: 100%; border-collapse: collapse; min-width: 800px; }
+    .spec-table th, .spec-table td { padding: 16px 20px; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: left; }
+    .spec-table th { background: rgba(0,0,0,0.3); color: var(--accent-cyan); font-weight: 600; font-size: 1.1rem; }
+    .spec-table td.col-header { color: var(--text-muted); font-weight: 500; width: 30%; background: rgba(0,0,0,0.1); }
+    .spec-table td { color: var(--text-white); font-weight: 400; }
+    .spec-table tr:hover td { background: rgba(59, 130, 246, 0.05); }
+
+    /* Validation Cases (案例展示区) */
+    .cases-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        margin-bottom: 60px;
+    }
+    .case-card {
+        padding: 40px;
+        background: var(--panel-matte);
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+        border: 1px solid var(--border-matte);
+        position: relative;
+    }
+    .case-tag {
+        display: inline-block;
+        padding: 6px 14px;
+        background: rgba(6, 182, 212, 0.15);
+        color: var(--accent-cyan);
+        font-size: 0.85rem;
+        font-weight: bold;
+        border-radius: 20px;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        border: 1px solid rgba(6, 182, 212, 0.3);
+    }
+    .case-card h3 { font-size: 1.5rem; margin-bottom: 15px; color: var(--text-white); line-height: 1.3;}
+    .case-card p { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 10px; }
+
+    /* 响应式调整 */
+    @media (max-width: 1024px) {
+        .hero { flex-direction: column; text-align: center; padding-top: 80px; }
+        .hero-content p { border-left: none; border-top: 4px solid var(--accent-blue); padding-left: 0; padding-top: 15px; display: inline-block; }
+        .hero-image { margin-top: 50px; padding-left: 0; }
+        .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+        .highlights-grid, .cases-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+        .hero-content h1 { font-size: 2.8rem; }
+        .kpi-grid { grid-template-columns: 1fr; }
+        .spec-table th, .spec-table td { padding: 12px 10px; font-size: 0.9rem; }
+    }
+</style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h2>Shentou Electric Light Truck Chassis<span class="cite-tag"></span></h2>
+            <h1>Boost Profit with TCO Excellence<span class="cite-tag"></span></h1>
+            <p>The Next-Generation CATL T5 Skateboard Architecture for Global Fleets.<span class="cite-tag"></span></p>
+        </div>
+        <div class="hero-image">
+            <div class="img-showcase">
+                <img src="T5底盘示意图2 copy.jpg" alt="CATL T5 Electric Truck Chassis Platform">
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <h2 class="section-title">Core Performance</h2>
+        <div class="kpi-grid">
+            <div class="glass-panel kpi-card">
+                <div class="kpi-number">100.07<span> kWh</span></div>
+                <div class="kpi-desc">LFP liquid-cooled CTP pack<span class="cite-tag"></span></div>
+            </div>
+            <div class="glass-panel kpi-card">
+                <div class="kpi-number">260+<span> km</span></div>
+                <div class="kpi-desc">Commercial range (CHTC)<span class="cite-tag"></span></div>
+            </div>
+            <div class="glass-panel kpi-card">
+                <div class="kpi-number">360<span> N.m</span></div>
+                <div class="kpi-desc">Peak torque from 120kW PMSM<span class="cite-tag"></span></div>
+            </div>
+            <div class="glass-panel kpi-card">
+                <div class="kpi-number">1+3+1</div>
+                <div class="kpi-desc">Native EV skateboard chassis<span class="cite-tag"></span></div>
+            </div>
+            <div class="glass-panel kpi-card">
+                <div class="kpi-number">≥96%</div>
+                <div class="kpi-desc">Powertrain system efficiency<span class="cite-tag"></span></div>
+            </div>
+            <div class="glass-panel kpi-card">
+                <div class="kpi-number">40<span> Min</span></div>
+                <div class="kpi-desc">DC fast charge (20% to 80%)<span class="cite-tag"></span></div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Product Highlights</h2>
+        <div class="highlights-grid">
+            <div class="highlight-card">
+                <div class="highlight-icon">⚙️</div>
+                <h3>High-Integration Powertrain & Rugged Protection<span class="cite-tag"></span></h3>
+                <p>It combines the hair-pin oil-cooled motor, inverter, and reducer into a compact IP67/IP68-rated housing to reduce weight, maximize chassis space, and ensure reliability in extreme terrains.<span class="cite-tag"></span></p>
+            </div>
+            <div class="highlight-card">
+                <div class="highlight-icon">❄️</div>
+                <h3>Advanced Combined Thermal Management<span class="cite-tag"></span></h3>
+                <p>It utilizes intelligent liquid cooling and waste heat recovery technologies to maintain optimal battery temperatures and extend overall pack life by 10%.<span class="cite-tag"></span></p>
+            </div>
+            <div class="highlight-card">
+                <div class="highlight-icon">🧠</div>
+                <h3>Smart Domain Control System (VCU)<span class="cite-tag"></span></h3>
+                <p>It features a centralized vehicle control unit that intelligently monitors real-time energy consumption and optimizes power distribution for global fleets.<span class="cite-tag"></span></p>
+            </div>
+        </div>
+
+        <h2 class="section-title">Technical Specifications</h2>
+        <div class="specs-wrapper">
+            <h3>T5 Chassis Configuration Matrix<span class="cite-tag"></span></h3>
+            <table class="spec-table">
+                <thead>
+                    <tr>
+                        <th>Specification Item</th>
+                        <th>Model A</th>
+                        <th>Model B</th>
+                        <th>Model C</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="col-header">Battery Capacity (CATL LFP)</td><td>100.07 kWh</td><td>120.27 kWh</td><td>140.41 kWh<span class="cite-tag"></span></td></tr>
+                    <tr><td class="col-header">Chassis Dimensions (L×W×H)</td><td colspan="3">5915 × 2170 × 3010 mm<span class="cite-tag"></span></td></tr>
+                    <tr><td class="col-header">Wheelbase</td><td colspan="3">3750 mm<span class="cite-tag"></span></td></tr>
+                    <tr><td class="col-header">Supported Vehicle Models</td><td colspan="3">Van / Refrigerated Box / Stake Truck<span class="cite-tag"></span></td></tr>
+                    <tr><td class="col-header">Motor Specs (Oil-cooled PMSM)</td><td colspan="3">90 kW (Rated) / 180 kW (Peak) / 400 N·m (Peak Torque)<span class="cite-tag"></span></td></tr>
+                    <tr><td class="col-header">Drive & Suspension</td><td colspan="3">4×2 Drive / Front & Rear Leaf Spring Non-independent Suspension<span class="cite-tag"></span></td></tr>
+                    <tr><td class="col-header">Charging Method</td><td colspan="3">GB DC (Supports single gun 2C Fast Charge)<span class="cite-tag"></span></td></tr>
+                    <tr><td class="col-header">Brake Configuration</td><td colspan="3">Front & Rear Independent Dual-Circuit (Hydraulic / Pneumatic Drum options)<span class="cite-tag"></span></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2 class="section-title">Global Real-World Validation</h2>
+        <div class="cases-grid">
+            <div class="case-card">
+                <span class="case-tag">Performance Validation</span>
+                <h3>Real-World Efficiency<span class="cite-tag"></span></h3>
+                <p>Standard testing often overlooks real-world volatility. Our platform eliminates the energy spikes of up to 61% common in competitor models.<span class="cite-tag"></span></p>
+                <p>Through rigorous 373km Xi'an-Luoyang and Yunnan mountain route testing, we have proven superior torque management and high-load stability.<span class="cite-tag"></span> In -7°C CHTC cycle tests, our system achieved a 29% reduction in consumption versus industry benchmarks, ensuring year-round operational consistency.<span class="cite-tag"></span></p>
+            </div>
+            <div class="case-card">
+                <span class="case-tag">Extreme Environment</span>
+                <h3>1000km Cold-Region Validation<span class="cite-tag"></span></h3>
+                <p>We subjected our platform to a 1,000 km, full-load, sub-zero long-haul trial to confirm diesel-surpassing viability.<span class="cite-tag"></span></p>
+                <p>Sustaining a 91 km/h highway average, we achieved an ultra-low operational cost of 0.5 RMB/km.<span class="cite-tag"></span> This represents a 50% reduction in daily expenses compared to traditional 13L-14L/100km diesel trucks, providing a direct, measurable boost to your fleet’s profitability.<span class="cite-tag"></span></p>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
